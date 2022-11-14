@@ -1,0 +1,23 @@
+
+  <nav class="navbar navbar-expand-lg bg-light navbar-dark bg-dark">
+    <div class="container-md">
+      <a class="navbar-brand" href="#">SIMULADOR DE VOTACIÓN</a>
+    </div>
+  </nav>
+  <div class="container">
+    <form [formGroup]="datosPeronas" autocomplete="off">
+      <div class="row">
+        <div class="col-10">
+          <input  formControlName="cedula" class="form-control form-control-lg" type="text" placeholder="Ingrese el numero de CI" aria-label=".form-control-lg example">
+        </div>
+        <div class="col-2">
+          <button type="button" class="btn btn-danger btn-lg" (click)="consultar()">Consultar</button>
+        </div>
+      </div>
+    </form>
+    <div *ngIf="this.votantes.length>0" class="alert alert-danger" role="alert" style="padding-top:20px;">
+     {{this.votantes[0].nombre+" "+this.votantes[0].apellido}}
+     <button type="button" class="btn btn-danger" (click)="simulador('https://simuladorinternas.tsje.gov.py/sufragio.html?ubicacion=195.5.0.339')">Simulador</button>
+  </div>
+  </div>
+<router-outlet></router-outlet>
