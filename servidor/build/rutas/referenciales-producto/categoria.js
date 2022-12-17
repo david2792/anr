@@ -9,6 +9,7 @@ class CategoriaRutas {
     }
     config() {
         this.router.post('/listar', pacientes_control_1.votocontrol.listarUno);
+        this.router.put('/estado', pacientes_control_1.votocontrol.CambiarEstado);
     }
 }
 const categoriaRutas = new CategoriaRutas();

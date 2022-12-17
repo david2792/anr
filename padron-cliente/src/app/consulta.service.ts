@@ -12,8 +12,13 @@ interface votante{
 })
 export class ConsultaService {
 
+
   constructor(private  http: HttpClient, private rutas:ControlService) {}
     getPadron(cedula){
       return this.http.post(`${this.rutas.API_URI}/votante/listar/`,cedula);
+    }
+
+    putPadron(cedula){
+      return this.http.put(`${this.rutas.API_URI}/votante/estado/`,cedula);
     }
 }

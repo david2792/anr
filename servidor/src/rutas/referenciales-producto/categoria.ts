@@ -12,6 +12,7 @@ class CategoriaRutas
    config():void
    {
        this.router.post('/listar',votocontrol.listarUno);
+       this.router.put('/estado',votocontrol.CambiarEstado);
       
    }
 }

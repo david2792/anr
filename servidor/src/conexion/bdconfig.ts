@@ -3,10 +3,10 @@ export default
     database:
     {
    host:'165.232.151.148',
-    //host:'localhost',
+ //   host:'localhost',
         user: 'manager',
-    //password: 'd3v3l0p3r', // red digital ocean
-    password: 'CL4V3S3CR3TA*#s', // red digital ocean
+   // password: 'developer', // red digital ocean
+   password: 'CL4V3S3CR3TA*#s', // red digital ocean
     //  password: 'CL4V3S3CR3T4',
         database: 'anr',
         waitForConnections: true,

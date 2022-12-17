@@ -15,14 +15,29 @@ class VotoControl {
     listarUno(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const conn = yield (0, conexionBD_1.connect)();
-            const padron = yield conn.query('SELECT * FROM padron WHERE cedula=?', req.body.cedula);
-            if (padron.length > 0) {
+            try {
+                const padron = yield conn.query('SELECT * FROM padron WHERE cedula=?', req.body.cedula);
+                return res.json(padron);
+            }
+            catch (error) {
+                res.status(404).json({ text: 'el docente no existe' });
+                conn.end();
+            }
+        });
+    }
+    CambiarEstado(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const conn = yield (0, conexionBD_1.connect)();
+            try {
                 yield conn.query('UPDATE padron SET estado = 1 WHERE cedula=?', req.body.cedula);
+                const padron = yield conn.query('SELECT * FROM padron WHERE cedula=?', req.body.cedula);
                 conn.end();
                 return res.json(padron);
             }
-            res.status(404).json({ text: 'el docente no existe' });
-            conn.end();
+            catch (error) {
+                res.status(404).json({ text: 'el docente no existe' });
+                conn.end();
+            }
         });
     }
     listarTodo(req, res) {

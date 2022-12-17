@@ -7,16 +7,34 @@ class VotoControl
   
   public async listarUno (req:Request,res:Response):Promise<any>{
     const conn = await connect();
+    try {
     const padron =  await conn.query('SELECT * FROM padron WHERE cedula=?',req.body.cedula);
-    if(padron.length > 0){
-      await conn.query('UPDATE padron SET estado = 1 WHERE cedula=?',req.body.cedula)
-      conn.end()
      return res.json(padron);
+    
+    } catch (error) {
+      res.status(404).json({text:'el docente no existe'});
+      conn.end()
     }
-    res.status(404).json({text:'el docente no existe'});
-    conn.end()
+    
+   
   
   } 
+  public async CambiarEstado (req:Request,res:Response):Promise<any>{
+    const conn = await connect();
+   try {
+    await conn.query('UPDATE padron SET estado = 1 WHERE cedula=?',req.body.cedula)
+    const padron =  await conn.query('SELECT * FROM padron WHERE cedula=?',req.body.cedula);
+    conn.end()
+    return res.json(padron);
+    
+   } catch (error) {
+    res.status(404).json({text:'el docente no existe'});
+    conn.end()
+   }
+   
+  
+  } 
+
 
   public async listarTodo (req:Request,res:Response):Promise<any>
   {

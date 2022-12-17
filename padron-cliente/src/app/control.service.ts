@@ -7,5 +7,6 @@ import { Router } from '@angular/router';
 })
 export class ControlService {
   public API_URI = 'http://165.232.151.148:3000/api'
+ // public API_URI = 'http://localhost:3000/api'
   constructor(private http: HttpClient, private router: Router) { }
 }
